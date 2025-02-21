@@ -1,46 +1,59 @@
-/* styles.css */
-body {
+
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: url("C:\Users\Srikari\OneDrive\Desktop\alzheimers app\Premium Vector _ Parkinsons disease cartoon.jpeg") no-repeat center center/cover;
-    font-family: Arial, sans-serif;
+    background-size: cover;
+    background-position: center;
 }
-
+/* Hide Dashboard by Default */
+.hidden {
+    display: none;
+}
+/* App Container */
+#app {
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+/* Login Container */
 .login-container {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 350px;
-}
-
-h2 {
-    color: #7a3e25;
-    font-size: 24px;
+    width: 300px;
 }
 
 input {
-    display: block;
     width: 100%;
-    margin: 10px 0;
     padding: 10px;
+    margin: 5px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
 }
 
 button {
+    width: 100%;
     padding: 10px;
     background: #7a3e25;
     color: white;
     border: none;
     cursor: pointer;
-    width: 100%;
     border-radius: 5px;
-    font-size: 16px;
+    margin: 10px 0;
 }
 
 button:hover {
@@ -48,18 +61,274 @@ button:hover {
 }
 
 .links {
-    display: flex;
-    justify-content: space-between;
     margin-top: 10px;
 }
 
 .links a {
     text-decoration: none;
     color: #7a3e25;
-    font-size: 14px;
 }
 
-#message {
-    margin-top: 10px;
-    font-weight: bold;
+.links a:hover {
+    text-decoration: underline;
+}
+/* Dashboard Container */
+.dashboard-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+}
+/* Navigation */
+nav {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    margin-left: 15px;
+}
+
+.nav-links li a, .nav-links li button {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    background: #7a3e25;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.nav-links li a:hover, .nav-links li button:hover {
+    background: #5a2e1b;
+}
+
+/* Hamburger Menu for Mobile */
+.hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background: rgba(0, 0, 0, 0.9);
+    }
+
+    .nav-links li {
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+}
+
+/* Pages */
+.page {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    display: none;
+}
+
+/* Show Home Page by Default */
+#home {
+    display: block;
+}
+/* Diseases Section */
+.disease-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.disease-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.disease-card:hover {
+    transform: scale(1.05);
+}
+
+.disease-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.hidden {
+    display: none;
+}
+
+#diseaseDetails {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.stages-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.stage {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-in-out;
+}
+
+.stage.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Close Button Styles */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out, background 0.3s;
+}
+
+.close-btn:hover {
+    background: #cc0000;
+    transform: scale(1.1);
+}
+/* General Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes scaleRotate {
+    0% {
+        transform: scale(1) rotate(0);
+    }
+    100% {
+        transform: scale(1.05) rotate(2deg);
+    }
+}
+
+/* Apply Animations */
+body {
+    animation: fadeInUp 1.2s ease-in-out;
+}
+
+nav {
+    animation: slideInFromTop 1s ease-in-out;
+}
+
+/* Button Animations */
+button {
+    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.05);
+    animation: bounce 0.6s ease-in-out;
+}
+
+/* Card Animations */
+.disease-card {
+    transition: transform 0.3s ease-in-out;
+}
+
+.disease-card:hover {
+    animation: scaleRotate 0.4s ease-in-out;
+}
+
+/* Staggered Fade-in for Stage Elements */
+.stage {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-in-out;
+}
+
+.stage.show {
+    opacity: 1;
+    transform: translateY(0);
 }
