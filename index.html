@@ -1,24 +1,130 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Login & Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="login-container">
-        <h2>Sign In</h2>
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-        <button onclick="login()">Login</button>
-        <div class="links">
-            <a href="#">Forget Password</a>
-            <a href="#">Sign Up</a>
+    <div id="app">
+        <!-- Login Page -->
+        <div class="login-container" id="loginPage">
+            <h2>Sign In</h2>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+                <p id="message"></p>
+            </form>
+            <div class="links">
+                <a href="#">Forgot Password?</a>
+                <a href="#" onclick="showSignUp()">Sign Up</a>
+            </div>
         </div>
-        <p id="message"></p>
+
+        <!-- Sign Up Page (Initially Hidden) -->
+        <div class="login-container hidden" id="signUpPage">
+            <h2>Sign Up</h2>
+            <form id="signUpForm">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="tel" id="phone" placeholder="Phone Number" required>
+                <input type="text" id="newUsername" placeholder="Username" required>
+                <input type="password" id="newPassword" placeholder="Password" required>
+                <button type="submit">Sign Up</button>
+                <p id="signUpMessage"></p>
+            </form>
+            <div class="links">
+                <a href="#" onclick="showLogin()">Back to Login</a>
+            </div>
+        </div>
+
+        <!-- Dashboard Page (Initially Hidden) -->
+        <div id="dashboardPage" class="hidden">
+            <nav>
+                <div class="nav-container">
+                    <h1 class="logo">My Website</h1>
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('myAccount')">My Account</a></li>
+                        <li><a href="#" onclick="showPage('about')">About</a></li>
+                        <li><a href="#" onclick="showPage('upload')">Upload Scans</a></li>
+                        <li><button id="logout">Logout</button></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="page" id="home">
+                <h2>Welcome to Home</h2>
+                <p>Learn about various diseases and their stages.</p>
+                <div class="disease-container">
+                    <div class="disease-card">
+                        <img src="images/OIP.jpeg" alt="Alzheimer's disease" style="width: auto; height: 20vh;">
+                        <h3>Alzheimer Symptoms</h3>
+                        <p>Brief description of the disease.</p>
+                        <ul>
+                            <li>Alzheimer’s disease is a progressive neurodegenerative disorder that worsens over time.</li>
+                            <li>The symptoms typically develop in stages.</li>
+                        </ul>
+                        <button onclick="showDetails('disease')">View Stages</button>
+                    </div>
+                </div>
+                <div id="diseaseDetails" class="hidden">
+                    <h2 id="diseaseTitle"></h2>
+                    <p id="diseaseDescription"></p>
+                    <img id="diseaseImage" src="" alt="">
+                    <h3>Stages:</h3>
+                    <ul id="diseaseStages"></ul>
+                    <button class="close-btn" onclick="closePopup()">×</button>
+                </div>
+            </div>
+
+            <div class="page" id="myAccount">
+                <h2>My Account</h2>
+                <div class="profile-container">
+                    <img id="profilePic" src="images/default-avatar.png" alt="Profile Picture">
+                    <h3 id="displayUsername">Username</h3>
+                    <p>Email: <span id="displayEmail">user@example.com</span></p>
+                </div>
+                <button onclick="editProfile()">Edit Profile</button>
+            </div>
+
+            <div id="editProfileForm" class="hidden">
+                <h3>Edit Profile</h3>
+                <input type="text" id="updatedUsername" placeholder="New Username">
+                <input type="email" id="updatedEmail" placeholder="New Email">
+                <input type="file" id="profileImageUpload" accept="image/*">
+                <button onclick="saveProfile()">Save Changes</button>
+                <button onclick="closeEditProfile()">Cancel</button>
+            </div>
+
+            <div id="changePasswordForm" class="hidden">
+                <h3>Change Password</h3>
+                <input type="password" id="oldPassword" placeholder="Old Password">
+                <input type="password" id="newPassword" placeholder="New Password">
+                <button onclick="changePassword()">Update Password</button>
+                <button onclick="closeChangePassword()">Cancel</button>
+            </div>
+
+            <h3>Medical History</h3>
+            <ul id="medicalHistoryList">
+                <li>No records found.</li>
+            </ul>
+
+            <div class="page" id="about">
+                <h2>About This Website</h2>
+                <p>Website details go here.</p>
+            </div>
+
+            <div class="page" id="upload">
+                <h2>Upload Scans</h2>
+                <input type="file" id="fileInput">
+                <button onclick="uploadFile()">Upload</button>
+            </div>
+        </div>
     </div>
+
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </body>
 </html>
